@@ -66,7 +66,7 @@ def nd2_to_array(images_path):
     # number_of_frames = images.metadata['sequence_count']
     iteration_axis = ''
     if 'v' in images.sizes and images.sizes['v'] > 1:
-        iteration_axis += 'v'
+        iteration_axis += 'm'
         number_of_positions = images.sizes['v']
     if 'm' in images.sizes and images.sizes['m'] > 1:
         iteration_axis += 'm'
