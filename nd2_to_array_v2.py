@@ -138,6 +138,7 @@ def nd2_to_array(images_path):
                     image_arrays[pos][channels[ch]] = np.array(frame)
                     ch+=1
         frames.close()
+        
     # For snapshots at different channels and XY positions and timepoints
     elif iteration_axis == 'mt':
         image_arrays = {}
@@ -159,6 +160,7 @@ def nd2_to_array(images_path):
                         image_arrays[pos][tm] = np.array(frame)
                         tm+=1             
         frames.close()
+        
     # For snapshots at different channels and XY positions and timepoints
     elif iteration_axis == 'mct':
         image_arrays = {}
@@ -190,9 +192,10 @@ def nd2_to_array(images_path):
                         tm+=1
         frames.close()
         
-        
+    # For a single XY position but multiple channels and timepoints
     elif iteration_axis == 'ct':
         image_arrays = {}
+        number_of_positions = 0
         with images as frames:
             print(frames)
             frames.iter_axes = iteration_axis
@@ -211,6 +214,22 @@ def nd2_to_array(images_path):
                         image_arrays[channels[ch]][tm] = np.array(frame)
                         tm+=1             
         frames.close()
+        
+    # if no channels or timepoints are specified, but multiple XY positions
+    elif iteration_axis == 'm':
+        image_arrays = {}
+        number_of_timepoints = 0
+        with images as frames:
+            print(frames)
+            frames.iter_axes = iteration_axis
+            pos = 0
+            image_arrays[pos] = {}
+
+            for frame in frames:
+                image_arrays[pos] = np.array(frame)
+                
+                pos+=1
+        frames.close()
     
     # if no channels or time points are specified there should be only one image
     elif iteration_axis == '':
@@ -219,5 +238,7 @@ def nd2_to_array(images_path):
         with images as frames:
             for frame in frames:
                 image_arrays = np.array(frame)
+        frames.close()
+
     
     return iteration_axis, images, image_arrays, channels, number_of_timepoints, number_of_positions, scale, sensor
