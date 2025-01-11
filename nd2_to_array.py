@@ -330,7 +330,7 @@ def nd2_to_array(images_path):
     This function was adapted to include all possible channel, time-point, xy-position permutations in our image acquisition protocols in NIS elements (including the JOBS module)
     New permutations may need to be included.
     The iteration axis determines how the image dimensions are iterated and stored into dictionaries. Some NIS elements version may use 'm' for the xy position and other versions use 'v'.
-    The current version of the code uses iteration axes that include 'm'. Update if the NIS elements software uses 'v' for xy position iterations. 
+    The current version of the code uses iteration axes that include 'm'. If the NIS elements software uses 'v' for xy position iterations, it will store this as 'm' in the iteration axis.
     """
     # The path of the .nd2 file 
     images = ND2_Reader(images_path)
