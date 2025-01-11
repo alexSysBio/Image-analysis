@@ -15,9 +15,8 @@ def get_imaging_channels(images):
         
     Returns
     -------
-    [0] The iteration axis (string)
-    [1] The number of positions (integer)
-    [2] The number of timepoints (integer)
+    [0] The channel names (list of strings)
+    [1] The number of channels (integer)
     """
     channels = []
     if 'c' in images.sizes:
@@ -43,9 +42,9 @@ def get_iteration_axis(images):
         
     Returns
     -------
-    [0] The iteration axis (string)
-    [1] The number of positions (integer)
-    [2] The number of timepoints (integer)
+    [0] The iteration axis (_str_)
+    [1] The number of positions (_int_)
+    [2] The number of timepoints (_int_)
     """
     
     number_of_positions = 0
@@ -307,7 +306,7 @@ def nd2_to_array(images_path):
     
     Parameters
     ----------
-    image_path - string: the path of the .nd2 file
+    image_path (_str_): the path of the .nd2 file
 
     Returns
     -------
