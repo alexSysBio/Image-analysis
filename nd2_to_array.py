@@ -338,7 +338,7 @@ def nd2_to_array(images_path):
     # "C:\Users\Alex\Anaconda3\Lib\site-packages\pims_nd2\nd2reader.py"
     # This path has been modified in lines 228 and 229 to accommodate the function.
     #print('metadata:',images.metadata)
-    print('dimensions:',images.sizes)
+    # print('dimensions:',images.sizes)
     
     scale = round(images.metadata['calibration_um'],3)  # μm/px scale
     sensor = (images.sizes['x'], images.sizes['y'])
