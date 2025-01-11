@@ -8,7 +8,7 @@ Cite:
     DNA/polysome phase separation and cell width confinement couple nucleoid segregation 
     to cell growth in Escherichia coli
     
-    Alexandros Papagiannakis, Qiwei Yu, Sander K. Govers, Wei-Hsiang Lin,  View ORCID ProfileNed S. Wingreen, Christine Jacobs-Wagner
+    Alexandros Papagiannakis, Qiwei Yu, Sander K. Govers, Wei-Hsiang Lin,  Ned S. Wingreen, Christine Jacobs-Wagner
     
     bioRxiv, https://doi.org/10.1101/2024.10.08.617237, October 22, 2024
 """
