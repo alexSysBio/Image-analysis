@@ -39,7 +39,7 @@ def get_imaging_channels(images):
                 channels.append(ch)  
     else:
         number_of_channels = 0
-    print(number_of_channels)
+    # print(number_of_channels)
     return channels, number_of_channels
 
 
@@ -91,7 +91,7 @@ def run_t_iteration(images, iteration_axis):
         for frame in frames:
             image_arrays[t] = np.array(frame)
             t += 1
-    frames.close()
+        frames.close()
     
     return image_arrays
 
@@ -116,7 +116,7 @@ def run_c_iteration(images, iteration_axis, channels):
         for frame in frames:
             image_arrays[channels[i]] = np.array(frame)
             i += 1
-    frames.close()
+        frames.close()
     
     return image_arrays
 
@@ -139,7 +139,7 @@ def run_m_iteration(images, iteration_axis):
         for frame in frames:
             image_arrays[pos] = np.array(frame)
             pos+=1
-    frames.close()
+        frames.close()
     
     return image_arrays
 
@@ -175,7 +175,7 @@ def run_mc_iteration(images, iteration_axis, number_of_channels, number_of_posit
                 ch = 0
                 image_arrays[pos][channels[ch]] = np.array(frame)
                 ch+=1
-    frames.close()
+        frames.close()
         
     return image_arrays
 
@@ -207,7 +207,7 @@ def run_mt_iteration(images, iteration_axis, number_of_timepoints, number_of_pos
                     image_arrays[pos] = {}
                     image_arrays[pos][tm] = np.array(frame)
                     tm+=1             
-    frames.close()
+        frames.close()
     
     return image_arrays
 
@@ -242,7 +242,7 @@ def run_ct_iteration(images, iteration_axis, number_of_timepoints, channels, num
                     image_arrays[channels[ch]] = {}
                     image_arrays[channels[ch]][tm] = np.array(frame)
                     tm+=1             
-    frames.close()
+        frames.close()
     
     return image_arrays
 
@@ -285,7 +285,7 @@ def run_mct_iteration(images, iteration_axis, number_of_timepoints, number_of_ch
                     image_arrays[pos][channels[ch]] = {}
                     image_arrays[pos][channels[ch]][tm] = np.array(frame)
                     tm+=1
-    frames.close()
+        frames.close()
     
     return image_arrays
     
@@ -303,7 +303,7 @@ def run_zero_iteration(images, iteration_axis):
     with images as frames:
         for frame in frames:
             image_arrays = np.array(frame)
-    frames.close()
+        frames.close()
     return image_arrays
 
 
