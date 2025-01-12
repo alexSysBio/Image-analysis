@@ -211,8 +211,8 @@ class omnipose_to_python_timelapse(object):
             single_cell_id (_str_): single cell ID
 
         Returns:
-            _dict_: a dictionary that includes the cell IDs as keys and the Pandas dataframes with the relative pixel coordinates and fluorescence values as values
-            _dict_: a dictionary that includes the cell IDs as keys and the cell length (px) as values
+            _dict_: a dictionary that includes the timepoints as keys and the Pandas dataframes with the relative pixel coordinates and fluorescence values as values
+            _dict_: a dictionary that includes the timepoints as keys and the cell length (px) as values
         """
         oned_coords_dict = {}
         cell_length_dict = {}
