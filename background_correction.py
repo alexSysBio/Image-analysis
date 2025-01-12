@@ -92,24 +92,24 @@ def back_sub(signal_image, phase_mask, dilation=15, estimation_step=128, smoothi
     # mask the signal image, excluding the dilated cell pixels
     masked_signal_image = signal_image * ~threshold_masks_dil
     if show == True:
-        plt.figure(figsize=(10,10))
+        # plt.figure(figsize=(10,10))
         plt.imshow(threshold_masks_dil)
         plt.show()
     # The dimensions of the averaging square
     step = estimation_step
     img_bkg_sig = cell_free_bkg_estimation(masked_signal_image, step)
     if show == True:
-        plt.figure(figsize=(20,20))
+        # plt.figure(figsize=(20,20))
         plt.imshow(img_bkg_sig, cmap='Blues')
         plt.clim(np.mean(img_bkg_sig.ravel())-5*np.std(img_bkg_sig.ravel()),np.mean(img_bkg_sig.ravel())+2.5*np.std(img_bkg_sig.ravel()))
         plt.colorbar()
         plt.show()
     # Smooth the reconstructed background image, with the filled cell pixels.
-    img_bkg_sig = img_bkg_sig.astype(np.int16)
+    # img_bkg_sig = img_bkg_sig.astype(np.int16)
     img_bkg_sig = ndimage.gaussian_filter(img_bkg_sig, sigma=smoothing_sigma)
     norm_img_bkg_sig = img_bkg_sig/np.max(img_bkg_sig.ravel())
     if show == True:
-        plt.figure(figsize=(20,20))
+        # plt.figure(figsize=(20,20))
         plt.imshow(img_bkg_sig, cmap='Blues')
         # plt.clim(0,25*np.std(bkg_cor.ravel()))
         plt.colorbar()
@@ -120,12 +120,12 @@ def back_sub(signal_image, phase_mask, dilation=15, estimation_step=128, smoothi
     # use this line if you want to convert negative pixels to zero
     # bkg_cor[bkg_cor<0]=0
     if show == True:
-        plt.figure(figsize=(20,20))
+        # plt.figure(figsize=(20,20))
         plt.imshow(bkg_cor, cmap='Blues')
         plt.clim(0,25*np.std(bkg_cor.ravel()))
         plt.colorbar()
         plt.show()
-        plt.figure(figsize=(20,20))
+        # plt.figure(figsize=(20,20))
         plt.imshow(img_bkg_sig*threshold_masks_dil, cmap='Blues')
         plt.clim(np.mean(img_bkg_sig.ravel())-5*np.std(img_bkg_sig.ravel()),np.mean(img_bkg_sig.ravel())+2.5*np.std(img_bkg_sig.ravel()))
         plt.colorbar()
