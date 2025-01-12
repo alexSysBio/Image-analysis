@@ -155,8 +155,8 @@ def recursive_medial_axis(index_increment, dist, x, y, angle, index, list_of_kno
             for i in range(20):
                 xyz_coord_list.pop()
 
-
-def get_medial_axis(cropped_cell_mask, radius_px, half_angle, cap_knot, max_degree, verbose):
+# radius_px=8, half_angle=22, cap_knot=13, max_degree=60, verbose=True
+def get_medial_axis(cropped_cell_mask, radius_px=8, half_angle=22, cap_knot=13, max_degree=60, verbose=False):
     """
     This function construct the medial axis of a signle cell, 
     as well as the relative coordinates of the cell from one pole to the other.
