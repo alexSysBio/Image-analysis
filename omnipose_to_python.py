@@ -21,7 +21,7 @@ class omnipose_to_python_timelapse(object):
     """
     
     def __init__(self, omni_cell_path, experiment, fluorescent_channels, min_trajectory_length, frame_interval, every_nth, save_path):
-        """_summary_
+        """Initializes the class
 
         Args:
             omni_cell_path (_str_): the path to the "Cell" folder generated after running omnipose to timelapse images
@@ -104,6 +104,8 @@ class omnipose_to_python_timelapse(object):
         self.save_path = save_path
         self.experiment = experiment
         self.fluorescent_channels = fluorescent_channels+['Phase']
+        self.interval = frame_interval
+        self.channel_frequency = every_nth
                     
         
     def get_cell_out_of_boundaries(self, limits):
