@@ -38,7 +38,7 @@ def get_angle_from_slope(displacements, slope='none'):
     dy = displacements[1]
 
     radians = math.atan2(dy,dx)
-    degrees = math.degrees(myradians)
+    degrees = math.degrees(radians)
     if degrees < 0:
         return 360+degrees
     else:
@@ -61,7 +61,7 @@ def correct_angle_difference(source_angle, destination_angle):
     
 
 # THIS CODE ESTIMATES THE NEXT ANCHOR POINT USING THE PREVIOUS ONE AND THE ANGLE
-def get_next_position(dist, x, y, angle, list_of_knots):
+def get_next_position(dist, x, y, angle, list_of_knots, radius_px, half_angle, index_increment):
     """
     This function scans the cell mask distance transformation for the max distance knots
     that will be used to fit the medial axis.
@@ -120,11 +120,11 @@ def get_next_position(dist, x, y, angle, list_of_knots):
 
 
 # RECURSIVE ALGORITHM TO GET ALL ANCHOR POINTS
-def recursive_medial_axis(index_increment, dist, x, y, angle, index, list_of_knots):
+def recursive_medial_axis(index_increment, dist, x, y, angle, index, list_of_knots, radius_px, half_angle, xyz_coord_list):
     """
     This is a function that runs the "get_next_position" finction recursively.
     """
-    new_knot =get_next_position(dist, x, y, angle, list_of_knots)
+    new_knot =get_next_position(dist, x, y, angle, list_of_knots, radius_px, half_angle, index_increment)
     if new_knot != False:
         if new_knot != 'loop':
             new_x,new_y,new_angle = new_knot
@@ -147,7 +147,7 @@ def recursive_medial_axis(index_increment, dist, x, y, angle, index, list_of_kno
             line = LineString(line_coords)
 #                input()
             if line.is_simple == True:
-                recursive_medial_axis(index_increment, dist, new_x, new_y, new_angle, index, list_of_knots)
+                recursive_medial_axis(index_increment, dist, new_x, new_y, new_angle, index, list_of_knots, radius_px, half_angle, xyz_coord_list)
             elif line.is_simple == False:
                 print('This is the end of the cell and a loop is formed...')
         # remove the loops
@@ -226,7 +226,6 @@ def get_medial_axis(cropped_cell_mask, radius_px, half_angle, cap_knot, max_degr
 #        print(start_angle)
 
 
-     
     # Run the recursive algorithms to get the anchor points for the central line fit
     index_increment = 1 # run towards one dimension
     index = 0
@@ -235,7 +234,7 @@ def get_medial_axis(cropped_cell_mask, radius_px, half_angle, cap_knot, max_degr
     x = start_x
     y = start_y
     angle = start_angle
-    recursive_medial_axis(index_increment, dist, x, y, angle, index, list_of_knots)
+    recursive_medial_axis(index_increment, dist, x, y, angle, index, list_of_knots, radius_px, half_angle, xyz_coord_list)
     xyz_coord_list_1 = xyz_coord_list.copy()
     index_increment = -1 # run towards the opposite dimension
     index = 0
@@ -246,7 +245,7 @@ def get_medial_axis(cropped_cell_mask, radius_px, half_angle, cap_knot, max_degr
     angle = start_angle + 180
     if angle >= 360:
         angle = angle-360
-    recursive_medial_axis(index_increment, dist, x, y, angle, index, list_of_knots)
+    recursive_medial_axis(index_increment, dist, x, y, angle, index, list_of_knots, radius_px, half_angle, xyz_coord_list)
     
     xyz_coord_list = xyz_coord_list_1 + xyz_coord_list[1:] # combine the two lists of coordinates
     
@@ -445,6 +444,8 @@ def get_medial_axis(cropped_cell_mask, radius_px, half_angle, cap_knot, max_degr
         plt.plot(medial_axis_df.cropped_x, medial_axis_df.cropped_y, color='red')
         plt.plot(cropped_centroid[0], cropped_centroid[1], 'o')
         plt.show()
+        plt.close("all")
+        
     # get the original centroid coordinates from the cropped centroid
     
     return medial_axis_df, cropped_centroid
