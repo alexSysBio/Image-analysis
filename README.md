@@ -4,7 +4,7 @@ nd2_to_array:
   The nd2_to_array function can be used to import .nd2 files into python. The files are stored into a dictionary which includes elemenets of the iteration axis as   keys and the image 2D numpy arrays as values. It uses the nd2 image reader from the pims library:
   https://pypi.org/project/pims-nd2/#:~:text=pims_nd2%20contains%20a%20reader%20for,and%20nice%20display%20in%20IPython.
   
-  I have tested most of the implemented iterations from microscopy images I have acquired. If the remaining iterations do not work it should be an easy fix. Please reach out if any exceptions pop up.
+  I have tested most of the implemented iterations from microscopy images I have acquired. If the remaining iterations do not work it should be an easy fix. Please reach out to address any exepctions.
 
   Cite:
     https://www.biorxiv.org/content/10.1101/2024.10.08.617237v2.full
@@ -36,7 +36,7 @@ Biviriate_medial_axis_estimation:
 
 
   Background_correction:
-    This scripts includes the functions required for a cell-free background estimation and subtraction. This is a fast implementation where a the cell-free background is calculated within square image sectors (tiles). These squared regions have a side which is a perfect divisor of the image dimensions. An alternative implementation, which is however slower, would involve a rolling window with a step of 1-pixel. An example for implementing background correction is provided in the test_background_correction.ipynb notebook.
+    This script includes the functions required for a cell-free background estimation and subtraction. This is a fast implementation where a the cell-free background is calculated within square image sectors (tiles). These squared regions have a side which is a perfect divisor of the image dimensions. An alternative implementation, which is however slower, would involve a rolling window with a step of 1-pixel. An example for implementing background correction is provided in the test_background_correction.ipynb notebook.
 
   Cite:
     https://www.biorxiv.org/content/10.1101/2024.10.08.617237v2.full
@@ -55,7 +55,7 @@ Omnipose to python:
     <br> SuperSegger: https://pubmed.ncbi.nlm.nih.gov/27569113/
     <br> see also: https://www.biorxiv.org/content/10.1101/2024.11.25.625259v1.full
 
-    The class can be initialized running the following function:
+    The class can be initialized by running the following function:
       omnipose_to_python_timelapse(omni_cell_path, experiment, fluorescent_channels, min_trajectory_length, frame_interval, every_nth, save_path)
     Other functions incldued in the class:
       get_cell_out_of_boundaries(limits)
